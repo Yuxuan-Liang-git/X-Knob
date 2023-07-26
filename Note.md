@@ -76,6 +76,15 @@ MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议）�
 
   ![image-20230723153109124](Note.assets/image-20230723153109124.png)
 
+* FOC
+
+  * ![img](https://pic4.zhimg.com/80/v2-2fc3a67057c1f08b4c5969551d417003_720w.webp)
+
+    三相电压`a-b-c`经过`Clark`变换转为固定坐标`α-β`，通过`park`变换为旋转坐标系`q-d`。此时`q-d`坐标系下跟踪量是线性的，可以用经典控制理论跟踪。通过`RevPark`转换回`α-β`，再通过`SVPWM`转为三相下基电压的占空比来控制电机。
+
+  * 
+
+
 ## ESP32相关
 
 * `Preference`：对于传统的单片机来说我们如果要固化保存小批量的数据的话通常会使用EEPROM，在Arduino core for the ESP32中也有相关的功能。不过对于ESP32来说官方还提供了一种叫做 Preferences 的功能，这个功能也可以用来固化保存数据，并且使用上比EEPROM更加方便。ESP32官方在Flash上建立了分区nvs，Preference数据以（key-value）的方式存储。
@@ -87,8 +96,3 @@ MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议）�
 # Nvs.cpp
 * 初始化时为什么要使用key记录value值，还有一步把value值赋给结构体参数？(set_lcd_bk_brightness)
 
-# 进度
-
-2023年7月23日：看到`HAL::motor_init`中的`motor.init`部分。查了点C++语法和电机相关的资料。
-
-`2023年7月25日`：`setup()`看完，了解了整体的初始化框架，查阅了一些C++相关语法。`main.cpp`的东西看完了的话估计web啥的也得看看？
